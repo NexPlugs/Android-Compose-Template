@@ -1,4 +1,10 @@
 package com.example.core.common.utils
 
-class ErrorType {
+import androidx.compose.runtime.Immutable
+
+
+@Immutable
+sealed interface ErrorType {
+    data class MessageError(val message: String) : ErrorType
+    data class ResourceError(val resId: Int) : ErrorType
 }

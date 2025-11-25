@@ -1,4 +1,4 @@
 package com.example.core.common.analytics
 
-class FIrebaseAnalytics {
+class FirebaseAnalytics {
 }

@@ -12,8 +12,8 @@ android {
         applicationId = "com.example.androidcomposetemplate"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = AppConfiguration.versionCode
+        versionName = AppConfiguration.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -4,6 +4,7 @@
     <bytecodeTargetLevel>
       <module name="Android_ComposeTemplate.common.main" target="11" />
       <module name="Android_ComposeTemplate.common.test" target="11" />
+      <module name="Android_ComposeTemplate.core.common.test" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

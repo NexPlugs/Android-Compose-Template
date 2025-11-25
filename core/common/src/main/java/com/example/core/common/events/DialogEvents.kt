@@ -2,7 +2,9 @@ package com.example.core.common.events
 
 import com.example.core.common.constants.ErrorScope
 
-
+/**
+ * Posts an error dialog event based on the provided error scope and exception.
+ */
 fun postErrorDialog(
     errorScope: ErrorScope,
     exception: Throwable,
@@ -24,4 +26,28 @@ fun postErrorDialog(
         onPositiveClick = onConfirm,
         onNegativeClick = null
     )
+
+    EventHelper.sendEvent(AppEvent.ShowDialog(dialogSpec))
+}
+
+/**
+ * Posts a general information dialog event.
+ */
+fun postInfoDialog(
+    title: String,
+    message: String,
+    confirmLabel: String,
+    cancelLabel: String? = null,
+    onConfirm: () -> Unit = {},
+) {
+    val dialogSpec = DialogSpec(
+        title = title,
+        message = message,
+        positiveButtonText = confirmLabel,
+        negativeButtonText = cancelLabel,
+        onPositiveClick = onConfirm,
+        onNegativeClick = null
+    )
+
+    EventHelper.sendEvent(AppEvent.ShowDialog(dialogSpec))
 }
