@@ -9,7 +9,9 @@ android {
 }
 
 dependencies {
+    // Kotlin
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
 
     // AndroidX
     implementation(libs.androidx.core)
@@ -17,4 +19,8 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.foundation)
     implementation(platform(libs.androidx.compose.bom))
+
+    // Network
+    implementation(libs.retrofit)
+
 }
