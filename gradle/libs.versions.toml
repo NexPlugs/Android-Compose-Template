@@ -21,9 +21,15 @@ androidxCompose="1.9.5"
 androidxCore="1.17.0"
 androidxMaterial3="1.4.0"
 
+# Inject
+javax-inject="1"
+
 
 ##Network
 retrofit="2.9.0"
+
+##Dagger
+dagger="2.48"
 
 
 [libraries]
@@ -56,6 +62,21 @@ androidx-core = { group = "androidx.core", name = "core", version.ref = "android
 
 # Network
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+
+# Inject
+javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javax-inject" }
+
+# Dagger
+dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
+dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
+
+# Dependency of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+compose-compiler-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

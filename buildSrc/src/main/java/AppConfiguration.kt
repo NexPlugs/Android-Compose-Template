@@ -1,8 +1,8 @@
 
 object AppConfiguration {
-    const val majorVersion = 1
-    const val minorVersion = 0
-    const val patchVersion = 3
-    const val versionName = "$majorVersion.$minorVersion.$patchVersion"
-    const val versionCode = 4
+    const val MAJOR_VERSION = 1
+    const val MINOR_VERSION = 0
+    const val PATCH_VERSION = 3
+    const val VERSION_NAME = "$MAJOR_VERSION.$MINOR_VERSION.$PATCH_VERSION"
+    const val VERSION_CODE = 4
 }
