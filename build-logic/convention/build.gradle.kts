@@ -2,6 +2,14 @@ plugins {
     `kotlin-dsl`
 }
 
+group = "com.example.buildlogic.convention"
+
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
 
 dependencies {
     compileOnly(libs.android.gradlePlugin)
@@ -11,17 +19,21 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        create("androidHilt") {
+        register("androidHilt") {
             id = "convention.android.hilt"
-            implementationClass = "AndroidHiltConventionPlugin"
+            implementationClass = "convention.AndroidHiltConventionPlugin"
         }
-        create("androidFeature") {
+        register("androidFeature") {
             id = "convention.android.feature"
-            implementationClass = "AndroidFeatureConventionPlugin"
+            implementationClass = "convention.AndroidFeatureConventionPlugin"
         }
-        create("androidApplicationCompose") {
+        register("androidApplicationCompose") {
             id = "convention.android.compose"
-            implementationClass = "AndroidApplicationComposeConventionPlugin"
+            implementationClass = "convention.AndroidApplicationComposeConventionPlugin"
+        }
+        register("androidLibrary") {
+            id = "convention.android.library"
+            implementationClass = "convention.AndroidLibraryConventionPlugin"
         }
     }
 }

@@ -24,6 +24,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Android ComposeTemplate"
+
 include(":app")
 include(":common")
 include(":core:common")

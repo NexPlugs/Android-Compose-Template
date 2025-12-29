@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.example.androidcomposetemplate"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.androidcomposetemplate"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = AppConfiguration.VERSION_CODE
         versionName = AppConfiguration.VERSION_NAME
 
