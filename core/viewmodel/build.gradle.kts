@@ -6,4 +6,6 @@ android {
     namespace = "com.example.core.viewmodel"
 }
 
-dependencies { }
+dependencies {
+    api(libs.androidx.lifecycle.viewModelCompose)
+}
