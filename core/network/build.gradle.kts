@@ -14,6 +14,10 @@ dependencies {
 
     // Network
     implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+
+    implementation(platform(libs.retrofit.bom))
+    implementation(platform(libs.okttp.bom))
 
     // Inject
     implementation(libs.javax.inject)

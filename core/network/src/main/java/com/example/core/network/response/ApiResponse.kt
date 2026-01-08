@@ -16,7 +16,11 @@ import kotlinx.coroutines.launch
 sealed interface ApiResponse<out T> {
 
     /** Represents a successful API response containing data of type [T]. */
-    data class Success<T>(val data: T, val tag: Any? = null) : ApiResponse<T>
+    data class Success<T>(
+        val data: T,
+        val tag: Any? = null,
+        val code: Int? = null,
+    ) : ApiResponse<T>
 
 
     /** Represents a failed API response. */
@@ -25,20 +29,24 @@ sealed interface ApiResponse<out T> {
 
         /**
          * Represents an error response with an optional payload.
-         * @param payload The error payload, can be of any type.
+         * @param code The error code.
+         * @param message The error message.
          */
-        open class Error(val payload: Any?) : Failure<Nothing> {
+        open class Error(
+            val code: Int?,
+            val message: String?,
+        ) : Failure<Nothing> {
 
-            override fun toString(): String = payload.toString()
+            override fun toString(): String = message.orEmpty()
 
             override fun hashCode(): Int {
                 var result = 17
-                result = 31 * result + (payload?.hashCode() ?: 0)
+                result = 31 * result + (code?.hashCode() ?: 0)
                 return result
             }
 
             override fun equals(other: Any?): Boolean = other is Error &&
-                    other.payload == this.payload
+                    other.code == this.code && other.message == this.message
         }
 
 

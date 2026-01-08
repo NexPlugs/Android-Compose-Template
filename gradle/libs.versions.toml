@@ -27,6 +27,7 @@ javax-inject="1"
 
 ##Network
 retrofit="2.9.0"
+okhttp="4.11.0"
 
 ##Dagger
 dagger="2.48"
@@ -67,6 +68,10 @@ androidx-core = { group = "androidx.core", name = "core", version.ref = "android
 
 # Network
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-kotlinx-serialization-converter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version = "0.8.0" }
+retrofit-bom = { group = "com.squareup.retrofit2", name = "retrofit-bom", version.ref = "retrofit" }
+
+okttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version = "okhttp" }
 
 # Inject
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javax-inject" }
