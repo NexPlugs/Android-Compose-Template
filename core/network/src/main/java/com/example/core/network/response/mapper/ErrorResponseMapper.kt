@@ -17,6 +17,7 @@ class ErrorResponseMapper : ApiErrorResponseMapper<ApplicationErrorResponse> {
      * @param apiErrorResponse The API error response to be mapped.
      * @return The mapped application error response.
      */
+
     override fun map(apiErrorResponse: ApiResponse.Failure.Error): ApplicationErrorResponse {
         return ApplicationErrorResponse(
             code = apiErrorResponse.statusCode.code,

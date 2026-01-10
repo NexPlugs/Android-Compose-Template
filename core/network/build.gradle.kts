@@ -22,5 +22,4 @@ dependencies {
     // Inject
     implementation(libs.javax.inject)
 
-
 }
