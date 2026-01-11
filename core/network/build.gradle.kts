@@ -1,15 +1,10 @@
 plugins {
-    id("java-library")
-    alias(libs.plugins.jetbrains.kotlin.jvm)
+    id("convention.android.library")
+    id("convention.android.hilt")
 }
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
-kotlin {
-    compilerOptions {
-        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
-    }
+
+android {
+    namespace = "com.example.core.network"
 }
 
 dependencies {
@@ -19,6 +14,10 @@ dependencies {
 
     // Network
     implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+
+    implementation(platform(libs.retrofit.bom))
+    implementation(platform(libs.okttp.bom))
 
     // Inject
     implementation(libs.javax.inject)

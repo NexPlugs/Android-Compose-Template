@@ -10,7 +10,7 @@ composeBom = "2025.11.01"
 jetbrainsKotlinJvm = "2.0.21"
 
 ## Kotlin version should align with the one used by AGP
-kotlin = "2.2.21"
+kotlin = "2.0.21"
 kotlinx-coroutines = "1.9.0"
 kotlinx-serialization-json = "1.6.0"
 
@@ -27,10 +27,14 @@ javax-inject="1"
 
 ##Network
 retrofit="2.9.0"
+okhttp="4.11.0"
 
 ##Dagger
 dagger="2.48"
 firebaseCrashlyticsBuildtools = "3.0.6"
+
+hilt="2.51.1"
+ksp="2.0.21-1.0.28"
 
 
 [libraries]
@@ -64,6 +68,10 @@ androidx-core = { group = "androidx.core", name = "core", version.ref = "android
 
 # Network
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-kotlinx-serialization-converter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version = "0.8.0" }
+retrofit-bom = { group = "com.squareup.retrofit2", name = "retrofit-bom", version.ref = "retrofit" }
+
+okttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version = "okhttp" }
 
 # Inject
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javax-inject" }
@@ -71,6 +79,12 @@ javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "j
 # Dagger
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
+
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version = "1.2.0" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 
 # Dependency of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -83,9 +97,9 @@ firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "fireb
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
