@@ -16,6 +16,6 @@ interface AuthService {
     }
 
     @POST(value = "/$BRANCH/login")
-    suspend fun login(@Body requestBody: LoginRequest, ): ApiResponse<AuthResponse>
+    suspend fun login(@Body requestBody: LoginRequest): ApiResponse<AuthResponse>
 
 }

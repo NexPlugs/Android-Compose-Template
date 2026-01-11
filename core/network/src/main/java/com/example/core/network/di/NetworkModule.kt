@@ -1,5 +1,7 @@
 package com.example.core.network.di
 
+import com.example.core.network.NetworkInitializer
+import com.example.core.network.internal.ApiResponseCallFactory
 import com.example.core.network.service.AuthService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -40,11 +42,15 @@ internal object NetworkModule {
     @OptIn(ExperimentalSerializationApi::class)
     @Singleton
     @Provides
-    fun provideRetrofit(json: Json, okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(
+        json: Json,
+        okHttpClient: OkHttpClient
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://api.example.com/") // Replace with actual base URL
             .client(okHttpClient)
             .addConverterFactory(json.asConverterFactory(MediaType.get("application/json")))
+            .addCallAdapterFactory(ApiResponseCallFactory.create(NetworkInitializer.networkScope))
             .build()
     }
 
