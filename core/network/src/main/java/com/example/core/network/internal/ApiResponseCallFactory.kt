@@ -33,7 +33,6 @@ class ApiResponseCallFactory private constructor(
                     resultType,
                     coroutineScope
                 )
-
             }
             Deferred::class.java -> {
                 val deferredType = getParameterUpperBound(0, returnType as ParameterizedType)
