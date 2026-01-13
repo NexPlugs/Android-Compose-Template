@@ -4,6 +4,10 @@ import android.util.StatsLog
 import com.example.core.network.operators.ApiResponseOperator
 import com.example.core.network.operators.ApiResponseSuspendOperator
 import com.example.core.network.response.ApiResponse
+import com.example.core.network.response.mapper.base.ApiSuccessResponseMapper
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 
 
 /** Applies the given [apiResponseOperator] to the [ApiResponse] */
@@ -58,3 +62,23 @@ val ApiResponse.Failure.Error.statusCode: StatusCode
 /** Returns the StatusCode from the ApiResponse.Success */
 val<T> ApiResponse.Success<T>.statusCode: StatusCode
     inline get() = StatusCode.fromCode(this.code)
+
+/**
+ *  Executes the given [onResult] block if the [ApiResponse] is a [ApiResponse.Success],
+ * mapping the response using the provided [mapper].
+ * Returns the original [ApiResponse] regardless of its type.
+ */
+@OptIn(ExperimentalContracts::class)
+@Suppress("WRONG_INVOCATION_KIND")
+@SuspendFunction
+suspend inline fun<T, V> ApiResponse<T>.suspendOnSuccess(
+    mapper: ApiSuccessResponseMapper<T, V>,
+    crossinline onResult: suspend V.() -> Unit
+): ApiResponse<T> {
+    contract { callsInPlace(onResult, InvocationKind.EXACTLY_ONCE) }
+
+    if(this is ApiResponse.Success) {
+        onResult(mapper.map(this))
+    }
+    return this
+}
