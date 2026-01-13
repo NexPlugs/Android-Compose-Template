@@ -9,6 +9,7 @@ import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.awaitResponse
 
 /**
  * A Call delegate that adapts a Call<T> to a Call<ApiResponse<T>>.
@@ -24,7 +25,7 @@ internal class ApiResponseCallDelegate<T>(
     override fun enqueueImpl(callback: Callback<ApiResponse<T>>) {
         coroutineScope.launch {
             try {
-                val response = proxy.execute()
+                val response = proxy.awaitResponse()
                 val apiResponse = ApiResponse.apiResponseOf { response }
                 callback.onResponse(
                     this@ApiResponseCallDelegate,

@@ -4,6 +4,9 @@ import android.util.StatsLog
 import com.example.core.network.operators.ApiResponseOperator
 import com.example.core.network.operators.ApiResponseSuspendOperator
 import com.example.core.network.response.ApiResponse
+import com.example.core.network.response.ApplicationErrorResponse
+import com.example.core.network.response.mapper.ErrorResponseMapper
+import com.example.core.network.response.mapper.base.ApiErrorResponseMapper
 import com.example.core.network.response.mapper.base.ApiSuccessResponseMapper
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
@@ -64,21 +67,63 @@ val<T> ApiResponse.Success<T>.statusCode: StatusCode
     inline get() = StatusCode.fromCode(this.code)
 
 /**
- *  Executes the given [onResult] block if the [ApiResponse] is a [ApiResponse.Success],
+ * Executes the given [onResult] block if the [ApiResponse] is a [ApiResponse.Success],
  * mapping the response using the provided [mapper].
  * Returns the original [ApiResponse] regardless of its type.
  */
 @OptIn(ExperimentalContracts::class)
-@Suppress("WRONG_INVOCATION_KIND")
 @SuspendFunction
 suspend inline fun<T, V> ApiResponse<T>.suspendOnSuccess(
     mapper: ApiSuccessResponseMapper<T, V>,
     crossinline onResult: suspend V.() -> Unit
 ): ApiResponse<T> {
-    contract { callsInPlace(onResult, InvocationKind.EXACTLY_ONCE) }
+    contract { callsInPlace(onResult, InvocationKind.AT_MOST_ONCE) }
 
     if(this is ApiResponse.Success) {
         onResult(mapper.map(this))
     }
     return this
+}
+
+/**
+ * Executes the given [onResult] block if the [ApiResponse] is a [ApiResponse.Failure],
+ * returning the original [ApiResponse] regardless of its type.
+ */
+@OptIn(ExperimentalContracts::class)
+inline fun<T> ApiResponse<T>.onFailure(
+    crossinline onResult: ApiResponse.Failure<T>.() -> Unit
+): ApiResponse<T> {
+
+    contract { callsInPlace(onResult, InvocationKind.AT_MOST_ONCE) }
+
+    if(this is ApiResponse.Failure) {
+        onResult(this)
+    }
+    return this
+}
+
+
+/**
+ * Executes the given [onResult] block if the [ApiResponse] is a [ApiResponse.Failure.Error],
+ * returning the original [ApiResponse] regardless of its type.
+ */
+inline fun<T> ApiResponse<T>.onError(
+    crossinline  onResult: ApiResponse.Failure.Error.() -> Unit
+): ApiResponse<T> {
+    if(this is ApiResponse.Failure.Error) {
+        onResult(this)
+    }
+    return this
+}
+
+
+
+/** Maps the [ApiResponse.Failure.Error] using the provided [mapper] */
+@OptIn(ExperimentalContracts::class)
+inline fun<T> ApiResponse.Failure.Error.map(
+    mapper: ApiErrorResponseMapper<T>,
+    crossinline onMapped: T.() -> Unit
+) {
+    contract { callsInPlace(onMapped, InvocationKind.AT_MOST_ONCE) }
+    onMapped(mapper.map(this))
 }
