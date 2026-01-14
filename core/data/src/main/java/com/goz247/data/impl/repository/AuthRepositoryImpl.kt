@@ -3,15 +3,17 @@ package com.goz247.data.impl.repository
 import com.example.core.common.utils.runSuspendCaching
 import com.example.core.network.di.IoDispatcher
 import com.example.core.network.map
+import com.example.core.network.mapResult
 import com.example.core.network.message
 import com.example.core.network.onError
-import com.example.core.network.onFailure
+import com.example.core.network.onException
 import com.example.core.network.request.LoginRequest
-import com.example.core.network.response.ApiResponse
 import com.example.core.network.response.mapper.ErrorResponseMapper
+import com.example.core.network.response.mapper.app.AuthResponse
 import com.example.core.network.service.AuthService
 import com.example.core.network.suspendOnSuccess
 import com.goz247.data.api.AuthRepository
+import com.goz247.data.impl.mapper.UserInfoMapper
 import com.goz247.data.models.UserModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -28,38 +30,35 @@ class AuthRepositoryImpl @Inject constructor(
     private val authService: AuthService,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ): AuthRepository {
-    companion object {
-        private const val TAG = "AuthRepositoryImpl"
-    }
-
     override suspend fun login(
         username: String,
         password: String
     ): Result<Unit> = runSuspendCaching {
         val response = authService.login(LoginRequest(username, password))
-
-        if(response is ApiResponse.Success) {
-            // Handle successful login, e.g., save tokens
-            Result.success(Unit)
-            return@runSuspendCaching
-        }
-        if(response is ApiResponse.Failure) {
-            Result.failure<Unit>(Exception("Login failed: ${response.message()}"))
-            return@runSuspendCaching
-        }
+        response.mapResult<AuthResponse, Unit>(
+            onResult = {
+                //TODO: Save auth token or any required data from AuthResponse
+            },
+            onError = { throw Exception(message()) },
+            onException = { throw Exception(message()) }
+        )
     }
 
     override suspend fun getUserInfo(
         onStart: () -> Unit,
         onComplete: () -> Unit,
-        onError: (String?) -> Unit
     ): Flow<UserModel> = flow {
         val response = authService.userInfo()
 
-        response.suspendOnSuccess {
-            emit(this.da)
+        response.suspendOnSuccess(UserInfoMapper()) {
+            emit(this)
         }.onError {
-            map(ErrorResponseMapper()) { onError(message) }
+            map(ErrorResponseMapper()) { throw Exception(message) }
+        }.onException {
+            map(ErrorResponseMapper()) { throw Exception(message) }
         }
-    }.onStart { onStart() }.onCompletion { onComplete() }.flowOn(ioDispatcher)
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
 }

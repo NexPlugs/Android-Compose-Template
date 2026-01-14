@@ -15,4 +15,7 @@ interface ApiErrorResponseMapper<T> {
      * @return The mapped value of type T.
      */
     fun map(apiErrorResponse: ApiResponse.Failure.Error): T
+
+
+    fun map(apExceptionResponse: ApiResponse.Failure.Exception): T
 }

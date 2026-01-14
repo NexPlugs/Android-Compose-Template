@@ -24,4 +24,11 @@ class ErrorResponseMapper : ApiErrorResponseMapper<ApplicationErrorResponse> {
             message = apiErrorResponse.message(),
         )
     }
+
+    override fun map(apExceptionResponse: ApiResponse.Failure.Exception): ApplicationErrorResponse {
+        return ApplicationErrorResponse(
+            code = -1,
+            message = apExceptionResponse.message(),
+        )
+    }
 }

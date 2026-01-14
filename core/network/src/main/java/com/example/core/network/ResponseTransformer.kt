@@ -80,7 +80,7 @@ suspend inline fun<T, V> ApiResponse<T>.suspendOnSuccess(
     contract { callsInPlace(onResult, InvocationKind.AT_MOST_ONCE) }
 
     if(this is ApiResponse.Success) {
-        onResult(mapper.map(this))
+        mapper.map(this).onResult()
     }
     return this
 }
@@ -97,7 +97,7 @@ inline fun<T> ApiResponse<T>.onFailure(
     contract { callsInPlace(onResult, InvocationKind.AT_MOST_ONCE) }
 
     if(this is ApiResponse.Failure) {
-        onResult(this)
+        this.onResult()
     }
     return this
 }
@@ -111,7 +111,20 @@ inline fun<T> ApiResponse<T>.onError(
     crossinline  onResult: ApiResponse.Failure.Error.() -> Unit
 ): ApiResponse<T> {
     if(this is ApiResponse.Failure.Error) {
-        onResult(this)
+        this.onResult()
+    }
+    return this
+}
+
+/**
+ * Executes the given [onResult] block if the [ApiResponse] is a [ApiResponse.Failure.Exception],
+ * returning the original [ApiResponse] regardless of its type.
+ */
+inline fun<T> ApiResponse<T>.onException(
+    crossinline  onResult: ApiResponse.Failure.Exception.() -> Unit
+): ApiResponse<T> {
+    if(this is ApiResponse.Failure.Exception) {
+        this.onResult()
     }
     return this
 }
@@ -125,5 +138,36 @@ inline fun<T> ApiResponse.Failure.Error.map(
     crossinline onMapped: T.() -> Unit
 ) {
     contract { callsInPlace(onMapped, InvocationKind.AT_MOST_ONCE) }
-    onMapped(mapper.map(this))
+    val mapped = mapper.map(this)
+    mapped.onMapped()
+}
+
+/** Maps the [ApiResponse.Failure.Exception] using the provided [mapper] */
+@OptIn(ExperimentalContracts::class)
+inline fun<T> ApiResponse.Failure.Exception.map(
+    mapper: ApiErrorResponseMapper<T>,
+    crossinline onMapped: T.() -> Unit
+) {
+    contract { callsInPlace(onMapped, InvocationKind.AT_MOST_ONCE) }
+
+    val mapped = mapper.map(this)
+    mapped.onMapped()
+}
+
+/**
+ * Maps the [ApiResponse] to a [Result] using the provided lambdas for each case.
+ * @param onResult Lambda to transform the successful result.
+ * @param onError Lambda to transform the error response into a Throwable.
+ * @param onException Lambda to transform the exception response into a Throwable.
+ */
+inline fun<T, V> ApiResponse<T>.mapResult(
+    onResult: ApiResponse.Success<T>.() -> V,
+    onError: ApiResponse.Failure.Error.() -> Throwable,
+    onException: ApiResponse.Failure.Exception.() -> Throwable,
+): Result<V> {
+    return when (this) {
+        is ApiResponse.Success -> Result.success(onResult(this))
+        is ApiResponse.Failure.Error -> Result.failure(onError(this))
+        is ApiResponse.Failure.Exception -> Result.failure(onException(this))
+    }
 }

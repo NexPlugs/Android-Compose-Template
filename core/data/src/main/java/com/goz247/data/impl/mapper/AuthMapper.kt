@@ -23,6 +23,7 @@ fun UserResponse.toModel(): UserModel {
  */
 class UserInfoMapper: ApiSuccessResponseMapper<UserResponse, UserModel> {
 
-    override fun map(apiSuccessResponse: ApiResponse.Success<UserResponse>): UserModel = apiSuccessResponse.data.toModel()
+    override fun map(apiSuccessResponse: ApiResponse.Success<UserResponse>): UserModel =
+        apiSuccessResponse.data.toModel()
 
 }
