@@ -8,6 +8,7 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.CallAdapter
+import retrofit2.awaitResponse
 import java.lang.reflect.Type
 
 /**
@@ -36,7 +37,7 @@ internal class ApiResponseDeferredCallAdapter<T>(
 
         coroutineScope.launch {
             try {
-                val response = call.execute()
+                val response = call.awaitResponse()
                 val apiResponse = ApiResponse.apiResponseOf { response }
                 deferred.complete(apiResponse)
             } catch (e: Throwable) {

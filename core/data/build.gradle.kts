@@ -8,9 +8,10 @@ android {
 }
 
 dependencies {
+    //Projects
+    implementation(project(":core:network"))
+    implementation(project(":core:common"))
+
     // Kotlin
-    project(":core:network")
-
     implementation(libs.kotlinx.coroutines.core)
-
 }

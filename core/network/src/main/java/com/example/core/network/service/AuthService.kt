@@ -3,6 +3,7 @@ package com.example.core.network.service
 import com.example.core.network.request.LoginRequest
 import com.example.core.network.response.ApiResponse
 import com.example.core.network.response.mapper.app.AuthResponse
+import com.example.core.network.response.mapper.app.UserResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -17,5 +18,8 @@ interface AuthService {
 
     @POST(value = "/$BRANCH/login")
     suspend fun login(@Body requestBody: LoginRequest): ApiResponse<AuthResponse>
+
+    @POST(value = "/$BRANCH/me")
+    suspend fun userInfo(): ApiResponse<UserResponse>
 
 }

@@ -15,7 +15,7 @@ import kotlin.coroutines.cancellation.CancellationException
  */
 @OptIn(ExperimentalContracts::class)
 @Suppress("WRONG_INVOCATION_KIND")
-inline fun<T> runSuspendCaching(block: () ->T): Result<T> {
+inline fun<T> runSuspendCaching(block: () -> T): Result<T> {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
 
     return try {
