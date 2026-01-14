@@ -7,6 +7,8 @@
       <module name="Android_ComposeTemplate.core.common.test" target="21" />
       <module name="Android_ComposeTemplate.core.data.test" target="11" />
       <module name="Android_ComposeTemplate.core.datastore.test" target="11" />
+      <module name="Android_ComposeTemplate.core.di.main" target="11" />
+      <module name="Android_ComposeTemplate.core.di.test" target="11" />
       <module name="Android_ComposeTemplate.core.network.test" target="11" />
       <module name="Android_ComposeTemplate.core.viewmodel.test" target="11" />
     </bytecodeTargetLevel>
