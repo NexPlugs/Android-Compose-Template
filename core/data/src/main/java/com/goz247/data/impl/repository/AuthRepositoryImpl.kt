@@ -1,6 +1,7 @@
 package com.goz247.data.impl.repository
 
 import com.example.core.common.utils.runSuspendCaching
+import com.example.core.model.UserModel
 import com.example.core.network.di.IoDispatcher
 import com.example.core.network.map
 import com.example.core.network.mapResult
@@ -14,7 +15,6 @@ import com.example.core.network.service.AuthService
 import com.example.core.network.suspendOnSuccess
 import com.goz247.data.api.AuthRepository
 import com.goz247.data.impl.mapper.UserInfoMapper
-import com.goz247.data.models.UserModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
