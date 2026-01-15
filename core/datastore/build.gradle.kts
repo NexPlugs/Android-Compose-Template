@@ -1,5 +1,6 @@
 plugins {
     id("convention.android.library")
+    id("convention.android.hilt")
 }
 
 android {
@@ -7,6 +8,10 @@ android {
 }
 
 dependencies {
+    // Modules
+    implementation(project(":core:model"))
+
     // Kotlin
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.androidx.datastore.preferences)
 }

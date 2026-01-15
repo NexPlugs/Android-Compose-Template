@@ -1,9 +1,9 @@
 package com.goz247.data.impl.mapper
 
+import com.example.core.model.UserModel
 import com.example.core.network.response.ApiResponse
 import com.example.core.network.response.mapper.app.UserResponse
 import com.example.core.network.response.mapper.base.ApiSuccessResponseMapper
-import com.goz247.data.models.UserModel
 
 
 /**

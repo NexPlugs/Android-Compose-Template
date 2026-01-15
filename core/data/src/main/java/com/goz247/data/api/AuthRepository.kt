@@ -1,6 +1,6 @@
 package com.goz247.data.api
 
-import com.goz247.data.models.UserModel
+import com.example.core.model.UserModel
 import kotlinx.coroutines.flow.Flow
 
 /**
