@@ -13,7 +13,7 @@ import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginE
 internal fun Project.configureAndroidCompose(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
-    pluginManager.apply("org.jetbrains.kotlin.android")
+    pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
 
     commonExtension.apply {
         buildFeatures {
