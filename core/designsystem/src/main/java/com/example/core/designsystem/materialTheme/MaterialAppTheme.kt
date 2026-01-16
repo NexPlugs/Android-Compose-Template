@@ -73,7 +73,9 @@ private val darkColorScheme: ColorScheme = darkColorScheme(
     scrim = md_theme_dark_scrim,
 )
 
-
+/**
+ * Application's Material Theme
+ */
 @Composable
 fun MaterialAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
