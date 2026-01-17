@@ -1,4 +1,3 @@
 package com.example.core.navigation
 
-class MyClass {
-}
+class LocalComposeNavigator { }
