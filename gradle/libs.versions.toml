@@ -36,6 +36,9 @@ firebaseCrashlyticsBuildtools = "3.0.6"
 hilt="2.51.1"
 ksp="2.0.21-1.0.28"
 
+#Navigation3
+navigation3="2.7.2"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -99,7 +102,9 @@ compose-compiler-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compos
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 
-
+# Navigation3
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "navigation3" }
+androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version = "navigation3" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

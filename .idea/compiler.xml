@@ -12,7 +12,10 @@
       <module name="Android_ComposeTemplate.core.di.main" target="11" />
       <module name="Android_ComposeTemplate.core.di.test" target="11" />
       <module name="Android_ComposeTemplate.core.model.test" target="11" />
+      <module name="Android_ComposeTemplate.core.navigation.test" target="11" />
       <module name="Android_ComposeTemplate.core.network.test" target="11" />
+      <module name="Android_ComposeTemplate.core.ui.main" target="11" />
+      <module name="Android_ComposeTemplate.core.ui.test" target="11" />
       <module name="Android_ComposeTemplate.core.viewmodel.test" target="11" />
     </bytecodeTargetLevel>
   </component>
