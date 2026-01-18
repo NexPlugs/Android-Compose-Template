@@ -7,6 +7,9 @@ import org.gradle.kotlin.dsl.assign
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
+/**
+ * This function use to configuration Kotlin Android Gradle settings for the given [Project]
+ */
 internal fun Project.configureKotlinAndroid(
     commonExtensions: CommonExtension<*, *, *, *, *, *>,
 ) {
@@ -27,7 +30,10 @@ internal fun Project.configureKotlinAndroid(
     }
 }
 
-
+/**
+ * This function use to configuration Kotlin Android Gradle settings for the given [Project]
+ * Have to config to compile kotlin code
+ */
 internal fun Project.configureKotlinAndroid(
     extension: KotlinAndroidProjectExtension
 ) {

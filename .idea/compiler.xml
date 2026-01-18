@@ -17,6 +17,9 @@
       <module name="Android_ComposeTemplate.core.ui.main" target="11" />
       <module name="Android_ComposeTemplate.core.ui.test" target="11" />
       <module name="Android_ComposeTemplate.core.viewmodel.test" target="11" />
+      <module name="Android_ComposeTemplate.features.auth.test" target="11" />
+      <module name="Android_ComposeTemplate.preview.main" target="11" />
+      <module name="Android_ComposeTemplate.preview.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

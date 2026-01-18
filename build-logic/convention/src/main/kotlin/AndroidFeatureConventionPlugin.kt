@@ -18,21 +18,23 @@ class AndroidFeatureConventionPlugin : Plugin<Project>{
                apply("org.jetbrains.kotlin.android")
            }
 
+           extensions.configure<LibraryExtension> {
+               configureKotlinAndroid(this)
+               configureAndroidCompose(this)
+               defaultConfig.targetSdk = 36
+
+               buildFeatures.compose = true
+           }
+
+           extensions.getByType<KotlinAndroidProjectExtension>().apply {
+                configureKotlinAndroid(this)
+           }
+
            dependencies {
                add("implementation", project(":core:common"))
                add("implementation", project(":core:designsystem"))
                add("implementation", project(":core:navigation"))
                add("implementation", project(":core:viewmodel"))
-           }
-
-           extensions.configure<LibraryExtension> {
-               configureKotlinAndroid(this)
-               configureAndroidCompose(this)
-               defaultConfig.targetSdk = 36
-           }
-
-           extensions.getByType<KotlinAndroidProjectExtension>().apply {
-                configureKotlinAndroid(this)
            }
        }
     }
