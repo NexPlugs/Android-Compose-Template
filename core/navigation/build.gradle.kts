@@ -1,13 +1,23 @@
 plugins {
-    id("java-library")
-    alias(libs.plugins.jetbrains.kotlin.jvm)
+    id("convention.android.library")
+    id("convention.android.library.compose")
+    id("convention.android.hilt")
+    alias(libs.plugins.kotlinx.serialization)
 }
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+
+android {
+    namespace = "com.example.core.navigation"
 }
-kotlin {
-    compilerOptions {
-        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
-    }
+
+dependencies {
+    //Kotlin
+    implementation(libs.androidx.core)
+    implementation(libs.kotlinx.coroutines.core)
+
+    implementation(libs.kotlinx.serialization.json)
+
+    //Navigation3
+
+    api(libs.androidx.navigation3.runtime.android)
+    api(libs.androidx.navigation3.ui.android)
 }
