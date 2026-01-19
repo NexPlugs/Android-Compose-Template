@@ -44,3 +44,28 @@ fun AppTheme(
         }
     }
 }
+
+
+/**
+ * Object to access current theme colors and background
+ *
+ * val colors = ApplicationTheme.colors
+ * val background = ApplicationTheme.currentBackground
+ */
+object ApplicationTheme {
+
+    /**
+     * Current background theme
+     */
+    val currentBackground: AppBackground
+        @Composable
+        get() = LocalBackgroundTheme.current
+
+
+    /**
+     * Current colors theme
+     */
+    val colors: AppColors
+        @Composable
+        get() = LocalColors.current
+}

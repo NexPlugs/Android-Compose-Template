@@ -36,3 +36,4 @@ data class AppBackground(
 
 val LocalBackgroundTheme: ProvidableCompositionLocal<AppBackground> =
     staticCompositionLocalOf { AppBackground() }
+
