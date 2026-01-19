@@ -10,8 +10,5 @@ interface AuthRepository {
     suspend fun login(username: String, password: String): Result<Unit>
 
 
-    suspend fun getUserInfo(
-        onStart: () -> Unit,
-        onComplete: () -> Unit,
-    ): Flow<UserModel>
+    suspend fun getUserInfo(): Flow<UserModel>
 }

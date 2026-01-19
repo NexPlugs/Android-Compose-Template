@@ -30,6 +30,7 @@ class AuthRepositoryImpl @Inject constructor(
     private val authService: AuthService,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ): AuthRepository {
+
     override suspend fun login(
         username: String,
         password: String
@@ -45,10 +46,7 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
 
-    override suspend fun getUserInfo(
-        onStart: () -> Unit,
-        onComplete: () -> Unit,
-    ): Flow<UserModel> = flow {
+    override suspend fun getUserInfo(): Flow<UserModel> = flow {
         val response = authService.userInfo()
 
         response.suspendOnSuccess(UserInfoMapper()) {
@@ -59,7 +57,5 @@ class AuthRepositoryImpl @Inject constructor(
             map(ErrorResponseMapper()) { throw Exception(message) }
         }
     }
-        .onStart { onStart() }
-        .onCompletion { onComplete() }
         .flowOn(ioDispatcher)
 }

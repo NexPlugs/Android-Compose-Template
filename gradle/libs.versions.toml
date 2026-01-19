@@ -38,7 +38,6 @@ firebaseCrashlyticsBuildtools = "3.0.6"
 hilt="2.51.1"
 
 #Navigation3
-androixNavigation="2.7.0"
 navigation3RuntimeAndroid = "1.0.0"
 
 [libraries]
@@ -105,7 +104,6 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 
 # Navigation3
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "androixNavigation" }
 androidx-navigation3-runtime-android = { group = "androidx.navigation3", name = "navigation3-runtime-android", version.ref = "navigation3RuntimeAndroid" }
 androidx-navigation3-ui-android = { group = "androidx.navigation3", name = "navigation3-ui-android", version.ref = "navigation3RuntimeAndroid" }
 

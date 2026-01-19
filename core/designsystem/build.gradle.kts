@@ -13,9 +13,9 @@ dependencies {
     implementation(project(":core:common"))
 
     // AndroidX
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.compose.foundation)
+    api(libs.androidx.compose.material3)
+    api(libs.androidx.ui)
+    api(libs.androidx.compose.foundation)
 
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    api(libs.androidx.lifecycle.runtime.ktx)
 }
