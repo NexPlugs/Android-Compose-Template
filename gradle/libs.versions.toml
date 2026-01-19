@@ -10,7 +10,9 @@ composeBom = "2025.11.01"
 jetbrainsKotlinJvm = "2.0.21"
 
 ## Kotlin version should align with the one used by AGP
-kotlin = "2.0.21"
+kotlin = "2.2.21"
+ksp="2.2.21-2.0.4"
+
 kotlinx-coroutines = "1.9.0"
 kotlinx-serialization-json = "1.6.0"
 
@@ -34,7 +36,6 @@ dagger="2.48"
 firebaseCrashlyticsBuildtools = "3.0.6"
 
 hilt="2.51.1"
-ksp="2.0.21-1.0.28"
 
 #Navigation3
 androixNavigation="2.7.0"
@@ -66,6 +67,7 @@ androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifec
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "androidxCompose" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxCompose" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "androidxCompose" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxMaterial3" }
 androidx-core = { group = "androidx.core", name = "core", version.ref = "androidxCore" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version = "1.1.0" }
@@ -109,10 +111,13 @@ androidx-navigation3-ui-android = { group = "androidx.navigation3", name = "navi
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
