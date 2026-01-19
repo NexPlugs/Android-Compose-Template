@@ -14,6 +14,10 @@ sealed class ApplicationScreen: NavKey {
     @Serializable
     data class Detail(val id: Int): ApplicationScreen()
 
+
+    @Serializable
+    data object Auth: ApplicationScreen()
+
 }
 
 
